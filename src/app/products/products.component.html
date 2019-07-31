@@ -7,7 +7,4 @@
   </li>
 </ul>
 
-<div *ngIf="selectedProduct">
-  <h2>{{selectedProduct.name | uppercase}} Details</h2>
-  <div><span>id: </span>{{selectedProduct.id}}</div>
-</div>
+<app-product-detail [product]="selectedProduct"></app-product-detail>
