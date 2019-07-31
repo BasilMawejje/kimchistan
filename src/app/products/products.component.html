@@ -1,13 +1,19 @@
 <h2>Products</h2>
 <div class="heroes">
-  <div *ngFor="let product of products"
-    [class.selected]="product === selectedProduct"
-    (click)="onSelect(product)">
-    {{product.id}}
-    {{product.attributes.name}}
-    {{product.attributes.price}}
-    {{product.attributes.image}}
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-1 col-md-4 col-lg-3" *ngFor="let product of products"
+        [class.selected]="product === selectedProduct"
+        (click)="onSelect(product)">
+        <div class="card">
+            <img src="{{product.attributes.image}}" class="card-img-top" alt="{{product.attributes.name}}">
+            <div class="card-body">
+              <p class="card-text">{{product.attributes.name}}</p>
+              <p class="card-text">{{product.attributes.price}}</p>
+            </div>
+          </div>
+      </div>
+    </div>
   </div>
-</div>
 
 <app-product-detail [product]="selectedProduct"></app-product-detail>
