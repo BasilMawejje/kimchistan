@@ -10,16 +10,11 @@ import { ApiService } from '../api.service';
 
 export class ProductsComponent implements OnInit {
   products: Product[];
-  selectedProduct: Product;
 
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {
     this.getProducts();
-  }
-
-  onSelect(product: Product): void {
-    this.selectedProduct = product;
   }
 
   getProducts(): void {

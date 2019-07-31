@@ -15,6 +15,12 @@ export class ApiService {
 
   // GET products from the server
   getProducts (): Observable<Product[]> {
-    return this.http.get<Product[]>(this.productsUrl).pipe(map((res: any) => res.data))
+    return this.http.get<Product[]>(this.productsUrl).pipe(map((res: any) => res.data));
+  }
+
+  // GET product by :id
+  getProduct(id: number): Observable<Product> {
+    const url = `${this.productsUrl}/${id}`;
+    return this.http.get<Product>(url).pipe(map((res: any) => res.data));
   }
 }
