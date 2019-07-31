@@ -23,6 +23,7 @@ export class ProductsComponent implements OnInit {
   }
 
   getProducts(): void {
-    this.products = this.apiService.getProducts();
+    this.apiService.getProducts()
+    .subscribe(products => this.products = products);
   }
 }

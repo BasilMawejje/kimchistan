@@ -1,4 +1,10 @@
 <div *ngIf="product">
-    <h2>{{product.name | uppercase}} Details</h2>
-    <div><span>id: </span>{{product.id}}</div>
+    <h2>{{product.attributes.name | uppercase}} Details</h2>
+    <div>
+        {{product.attributes.name}}
+        {{product.attributes.price}}
+        {{product.attributes.type}}
+        {{product.attributes.description}}
+        {{product.attributes.available}}
+    </div>
 </div>
