@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProductsComponent } from './products.component';
+import { RouterModule } from '@angular/router';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('ProductsComponent', () => {
   let component: ProductsComponent;
@@ -8,7 +10,8 @@ describe('ProductsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProductsComponent ]
+      declarations: [ ProductsComponent ],
+      imports: [ RouterModule, HttpClientTestingModule ]
     })
     .compileComponents();
   }));
@@ -20,9 +23,6 @@ describe('ProductsComponent', () => {
   });
 
   it('should create', () => {
-<<<<<<< HEAD
-    expect(component).toBeTruthy();
-=======
     expect(component).toBeDefined();
   });
 
@@ -33,6 +33,5 @@ describe('ProductsComponent', () => {
 
   afterEach(() => {
     fixture.destroy();
->>>>>>> c6efaa8... Clean up tests
   });
 });
