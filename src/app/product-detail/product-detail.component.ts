@@ -12,7 +12,7 @@ import { ApiService } from '../api.service';
 })
 
 export class ProductDetailComponent implements OnInit {
-  @Input() product: Product;
+  product: Product;
 
   constructor(private route: ActivatedRoute, 
               private location: Location, 
@@ -24,6 +24,7 @@ export class ProductDetailComponent implements OnInit {
 
   getProduct(): void {
     const id = +this.route.snapshot.paramMap.get('id');
+    
     this.apiService.getProduct(id)
       .subscribe(product => this.product = product);
   }
