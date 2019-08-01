@@ -33,4 +33,13 @@ describe('ProductDetailComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it("should render product in a <h5> tag", () => {
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('h5').textContent).toContain('Bibimbap');
+  });
+
+  afterEach(() => {
+    fixture.destroy();
+  });
 });

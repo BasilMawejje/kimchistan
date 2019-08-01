@@ -20,6 +20,19 @@ describe('ProductsComponent', () => {
   });
 
   it('should create', () => {
+<<<<<<< HEAD
     expect(component).toBeTruthy();
+=======
+    expect(component).toBeDefined();
+  });
+
+  it("should render 'products' in a <h1> tag", () => {
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('h2').textContent).toContain('Products');
+  });
+
+  afterEach(() => {
+    fixture.destroy();
+>>>>>>> c6efaa8... Clean up tests
   });
 });
