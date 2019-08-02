@@ -6,7 +6,7 @@ import { Location } from '@angular/common';
 import { ApiService } from '../api.service';
 import { of } from 'rxjs';
 
-fdescribe('ProductDetailComponent', () => {
+describe('ProductDetailComponent', () => {
   let component: ProductDetailComponent;
   let fixture: ComponentFixture<ProductDetailComponent>;
 
