@@ -2,15 +2,13 @@
 <div>
   <div class="container">
     <div class="row">
-      <div class="col-md-3" *ngFor="let product of products"
-        routerLink="/detail/{{product.id}}">
-        <div class="card">
-            <img src="{{product.attributes.image}}" class="card-img-top" alt="{{product.attributes.name}}">
-            <div class="card-body">
-              <p class="card-text">{{product.attributes.name}}</p>
-              <p class="card-text">{{product.attributes.price}}</p>
-            </div>
+      <div class="card" class="col-md-3" *ngFor="let product of products"
+      routerLink="/detail/{{product.id}}">
+          <img src="{{product.attributes.image}}" class="card-img-top" alt="{{product.attributes.name}}">
+          <div class="card-body">
+            <p class="card-text">{{product.attributes.name}}</p>
+            <h5 class="card-text">Price: {{product.attributes.price}}</h5>
           </div>
-      </div>
+        </div>
     </div>
   </div>

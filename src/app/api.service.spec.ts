@@ -13,7 +13,7 @@ interface Product {
 
 const testUrl = '/data';
 
-fdescribe('ApiService', () => {
+describe('ApiService', () => {
   let httpClient: HttpClient;
   let httpTestingController: HttpTestingController;
 
