@@ -42,7 +42,15 @@ describe('ProductDetailComponent', () => {
   });
 
   it('should get the product', () => {
-    expect(component.product).toBeDefined();
+    expect(component.getProduct).toBeDefined();
+  });
+
+  it("tracks that the product method was called", () => {
+    expect(apiServiceSpy.getProduct).toHaveBeenCalled();
+  });
+
+  it("tracks all the arguments of its calls", () => {
+    expect(apiServiceSpy.getProduct).toHaveBeenCalledWith(NaN);
   });
 
   it('html should render one product description', () => {
