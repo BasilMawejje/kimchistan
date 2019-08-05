@@ -26,7 +26,7 @@ describe('ProductsComponent', () => {
     expect(component).toBeDefined();
   });
 
-  it("should render 'products' in a <h1> tag", () => {
+  it('should render Products in a <h1> tag', () => {
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('h2').textContent).toContain('Products');
   });

@@ -10,16 +10,26 @@ describe('ProductDetailComponent', () => {
   let component: ProductDetailComponent;
   let fixture: ComponentFixture<ProductDetailComponent>;
 
-  let activatedRouteSpy = {snapshot: { paramMap: {get: ()=> {}}}}
-  let apiServiceSpy = jasmine.createSpyObj('ApiService', ['getProduct']);
-  let locationSpy = jasmine.createSpyObj('Location', ['back']);
+  const activatedRouteSpy = {snapshot: { paramMap: {get: () => {}}}};
+  const apiServiceSpy = jasmine.createSpyObj('ApiService', ['getProduct']);
+  const locationSpy = jasmine.createSpyObj('Location', ['back']);
 
   beforeEach(async(() => {
-    apiServiceSpy.getProduct.and.returnValue(of({attributes: {name: 'Bibimbap', price: 49, description: 'The best we offer.', image: 'http://richtree.com/wp-content/uploads/sites/2/2016/10/IMG_2392.jpg'}}));
-    TestBed.configureTestingModule({
+  apiServiceSpy.getProduct.and.returnValue(of(
+    {
+      attributes:
+        {
+        name: 'Bibimbap',
+        price: 49, description: 'The best we offer.',
+        image: 'http://richtree.com/wp-content/uploads/sites/2/2016/10/IMG_2392.jpg'
+      }
+    }));
+  TestBed.configureTestingModule({
       declarations: [ ProductDetailComponent ],
-      providers: [{provide: ActivatedRoute, useValue: activatedRouteSpy}, 
-                  {provide: Location, useValue: locationSpy}, {provide: ApiService, useValue: apiServiceSpy}], 
+      providers: [
+        {provide: ActivatedRoute, useValue: activatedRouteSpy},
+        {provide: Location, useValue: locationSpy},
+        {provide: ApiService, useValue: apiServiceSpy}],
       imports: [ RouterModule ]
     })
     .compileComponents();
@@ -45,11 +55,11 @@ describe('ProductDetailComponent', () => {
     expect(component.getProduct).toBeDefined();
   });
 
-  it("tracks that the product method was called", () => {
+  it('tracks that the product method was called', () => {
     expect(apiServiceSpy.getProduct).toHaveBeenCalled();
   });
 
-  it("tracks all the arguments of its calls", () => {
+  it('tracks all the arguments of its calls', () => {
     expect(apiServiceSpy.getProduct).toHaveBeenCalledWith(NaN);
   });
 

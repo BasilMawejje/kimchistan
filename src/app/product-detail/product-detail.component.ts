@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { Product } from '../product';
+import { IProduct } from '../product';
 import { ApiService } from '../api.service';
 
 @Component({
@@ -12,10 +12,10 @@ import { ApiService } from '../api.service';
 })
 
 export class ProductDetailComponent implements OnInit {
-  product: Product;
+  product: IProduct;
 
-  constructor(private route: ActivatedRoute, 
-              private location: Location, 
+  constructor(private route: ActivatedRoute,
+              private location: Location,
               private apiService: ApiService) { }
 
   ngOnInit() {
@@ -24,7 +24,7 @@ export class ProductDetailComponent implements OnInit {
 
   getProduct(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    
+
     this.apiService.getProduct(id)
       .subscribe(product => this.product = product);
   }

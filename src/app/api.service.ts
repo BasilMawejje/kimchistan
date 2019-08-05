@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Product } from './product';
+import { IProduct } from './product';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -14,13 +14,13 @@ export class ApiService {
   constructor(private http: HttpClient) { }
 
   // GET products from the server
-  getProducts (): Observable<Product[]> {
-    return this.http.get<Product[]>(this.productsUrl).pipe(map((res: any) => res.data));
+  getProducts(): Observable<IProduct[]> {
+    return this.http.get<IProduct[]>(this.productsUrl).pipe(map((res: any) => res.data));
   }
 
   // GET product by :id
-  getProduct(id: number): Observable<Product> {
+  getProduct(id: number): Observable<IProduct> {
     const url = `${this.productsUrl}/${id}`;
-    return this.http.get<Product>(url).pipe(map((res: any) => res.data));
+    return this.http.get<IProduct>(url).pipe(map((res: any) => res.data));
   }
 }

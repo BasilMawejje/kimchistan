@@ -5,10 +5,10 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 // Setup for tests
 interface Product {
-  id: number, 
-  name: string, 
-  price: number,
-  description: string
+  id: number;
+  name: string;
+  price: number;
+  description: string;
 }
 
 const testUrl = '/data';
@@ -19,7 +19,7 @@ describe('ApiService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ HttpClientTestingModule ], 
+      imports: [ HttpClientTestingModule ],
       providers: [ ApiService ]
     });
 
