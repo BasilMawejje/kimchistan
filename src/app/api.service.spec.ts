@@ -11,11 +11,14 @@ interface Product {
   description: string;
 }
 
-const testUrl = '/data';
+const testUrl = '/api/v1/products';
 
 describe('ApiService', () => {
   let httpClient: HttpClient;
   let httpTestingController: HttpTestingController;
+  let service: ApiService;
+
+  const testProduct: Product = {id: 1, name: 'Bibimbap', price: 49, description: 'The best we offer.'};
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -26,24 +29,29 @@ describe('ApiService', () => {
     httpClient = TestBed.get(HttpClient);
     httpTestingController = TestBed.get(HttpTestingController);
   });
+
   afterEach(() => {
     httpTestingController.verify();
   });
 
   // Tests begin here
+  it('should use ApiService', () => {
+    service = TestBed.get(ApiService);
+    expect(service.getProducts()).toBeDefined();
+  });
+
   it('should be created', () => {
     const apiService: ApiService = TestBed.get(ApiService);
     expect(apiService).toBeTruthy();
   });
 
   it('can get products via HttpClient GET method', () => {
-    const testProduct: Product = {id: 1, name: 'Bibimbap', price: 49, description: 'The best we offer.'};
     httpClient.get<Product>(testUrl)
       .subscribe(data =>
         expect(data).toEqual(testProduct)
       );
 
-    const req = httpTestingController.expectOne('/data');
+    const req = httpTestingController.expectOne('/api/v1/products');
     expect(req.request.method).toEqual('GET');
     req.flush(testProduct);
     httpTestingController.verify();
