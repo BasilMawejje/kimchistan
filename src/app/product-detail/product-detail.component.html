@@ -1,13 +1,13 @@
 <div class="card mb-3" style="max-width: 540px;">
 <div class="row no-gutters">
     <div class="col-md-4">
-        <img src="{{product.attributes.image}}" class="card-detail-img" alt="{{product.attributes.name}}">
+        <img src="{{product?.attributes.image}}" class="card-detail-img" alt="{{product?.attributes.name}}">
     </div>
         <div class="col-md-8">
         <div class="card-body">
-            <h5 class="card-title">{{product.attributes.name}}</h5>
-            <p class="card-text">{{product.attributes.description}}</p>
-            <p class="card-text">Price: <small class="text-muted">{{product.attributes.price | currency: 'SEK'}}</small></p>
+            <h5 class="card-title">{{product?.attributes.name}}</h5>
+            <p class="card-text">{{product?.attributes.description}}</p>
+            <p class="card-text">Price: <small class="text-muted">{{product?.attributes.price | currency: 'SEK'}}</small></p>
         </div>
     </div>
 </div>
