@@ -3,7 +3,8 @@ import { IProduct } from '../product';
 import { ApiService } from '../api.service';
 
 @Component({
-  selector: 'app-products',
+  //selector only needed if it will be used as a nested component. We are using routing for this now. 
+  // selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
