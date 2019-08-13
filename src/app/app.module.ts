@@ -12,6 +12,7 @@ import { HeaderComponent } from './header/header.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ErrorInterceptorService } from './interceptors/error.interceptor.service';
 import { ApiService } from './api.service';
+import { SpinnerComponent } from "./core/spinner/spinner.component";
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ApiService } from './api.service';
     ProductsComponent,
     ProductDetailComponent,
     HeaderComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,

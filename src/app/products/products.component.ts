@@ -11,6 +11,7 @@ import { ApiService } from '../api.service';
 
 export class ProductsComponent implements OnInit {
   products: IProduct[];
+  loading = true;
 
   constructor(private apiService: ApiService) { }
 
@@ -18,8 +19,16 @@ export class ProductsComponent implements OnInit {
     this.getProducts();
   }
 
+  showSpinner(value: boolean) {
+    this.loading = value;
+  }
+
   getProducts(): void {
+    this.showSpinner(true);
     this.apiService.getProducts()
-    .subscribe(products => this.products = products);
+    .subscribe(products => {
+      this.products = products;
+      this.showSpinner(false);
+    });
   }
 }

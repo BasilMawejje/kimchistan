@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ProductsComponent } from './products.component';
 import { RouterModule } from '@angular/router';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { SpinnerComponent } from '../core/spinner/spinner.component';
 
 describe('ProductsComponent', () => {
   let component: ProductsComponent;
@@ -10,7 +11,7 @@ describe('ProductsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProductsComponent ],
+      declarations: [ ProductsComponent, SpinnerComponent ],
       imports: [ RouterModule, HttpClientTestingModule ]
     })
     .compileComponents();

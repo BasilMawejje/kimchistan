@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { ErrorInterceptorService } from './error.interceptor.service';
 import { RouterTestingModule } from '@angular/router/testing';
-import { throwError, of } from 'rxjs';
+import { throwError } from 'rxjs';
 
 describe('ErrorService', () => {
   let service;
