@@ -13,6 +13,7 @@ import { ApiService } from '../api.service';
 
 export class ProductDetailComponent implements OnInit {
   product: IProduct;
+  loading = true;
 
   constructor(private route: ActivatedRoute,
               private location: Location,
@@ -20,14 +21,20 @@ export class ProductDetailComponent implements OnInit {
 
   ngOnInit() {
     this.getProduct();
+  }
 
+  showSpinner(value: boolean) {
+    this.loading = value;
   }
 
   getProduct(): void {
+    this.showSpinner(true);
     const id = +this.route.snapshot.paramMap.get('id');
-
     this.apiService.getProduct(id)
-      .subscribe(product => this.product = product);
+      .subscribe(product => {
+        this.product = product;
+        this.showSpinner(false);
+      });
   }
 
   goBack(): void {

@@ -5,6 +5,7 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Location } from '@angular/common';
 import { ApiService } from '../api.service';
 import { of } from 'rxjs';
+import { SpinnerComponent } from '../core/spinner/spinner.component';
 
 describe('ProductDetailComponent', () => {
   let component: ProductDetailComponent;
@@ -25,7 +26,7 @@ describe('ProductDetailComponent', () => {
       }
     }));
   TestBed.configureTestingModule({
-      declarations: [ ProductDetailComponent ],
+      declarations: [ ProductDetailComponent, SpinnerComponent ],
       providers: [
         {provide: ActivatedRoute, useValue: activatedRouteSpy},
         {provide: Location, useValue: locationSpy},
