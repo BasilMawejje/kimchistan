@@ -4,6 +4,9 @@ import { Location } from '@angular/common';
 
 import { IProduct } from '../models/product';
 import { ApiService } from '../api.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { ProductTrackerError } from '../models/ProductTrackerError';
 
 @Component({
   selector: 'app-product-detail',
@@ -31,10 +34,11 @@ export class ProductDetailComponent implements OnInit {
     this.showSpinner(true);
     const id = +this.route.snapshot.paramMap.get('id');
     this.apiService.getProduct(id)
-      .subscribe(product => {
-        this.product = product;
-        this.showSpinner(false);
-      });
+      .subscribe(
+        (product: IProduct) => this.product = product,
+        (err: ProductTrackerError) => console.log(err.detailedMessage),
+      );
+      this.showSpinner(false);
   }
 
   goBack(): void {

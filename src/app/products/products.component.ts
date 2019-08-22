@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IProduct } from '../models/product';
 import { ApiService } from '../api.service';
+import { ProductTrackerError } from '../models/ProductTrackerError';
 
 @Component({
   // selector only needed if it will be used as a nested component. We are using routing for this now.
@@ -26,9 +27,10 @@ export class ProductsComponent implements OnInit {
   getProducts(): void {
     this.showSpinner(true);
     this.apiService.getProducts()
-    .subscribe(products => {
-      this.products = products;
-      this.showSpinner(false);
-    });
+    .subscribe(
+      (products: IProduct[]) => this.products = products, 
+      (err: ProductTrackerError) => console.log(err),
+    );
+    this.showSpinner(false);
   }
 }
