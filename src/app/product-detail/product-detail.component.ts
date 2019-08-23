@@ -35,10 +35,12 @@ export class ProductDetailComponent implements OnInit {
     const id = +this.route.snapshot.paramMap.get('id');
     this.apiService.getProduct(id)
       .subscribe(
-        (product: IProduct) => this.product = product,
+        (product: IProduct) => {
+          this.product = product;
+          this.showSpinner(false);
+        },
         (err: ProductTrackerError) => console.log(err.detailedMessage),
       );
-      this.showSpinner(false);
   }
 
   goBack(): void {

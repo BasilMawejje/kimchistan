@@ -34,6 +34,5 @@ export class ProductsComponent implements OnInit {
       },
       (err: ProductTrackerError) => console.log(err),
     );
-    // this.showSpinner(false);
   }
 }
