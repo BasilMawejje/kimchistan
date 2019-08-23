@@ -28,9 +28,12 @@ export class ProductsComponent implements OnInit {
     this.showSpinner(true);
     this.apiService.getProducts()
     .subscribe(
-      (products: IProduct[]) => this.products = products, 
+      (products: IProduct[]) => {
+        this.products = products; 
+        this.showSpinner(false);
+      },
       (err: ProductTrackerError) => console.log(err),
     );
-    this.showSpinner(false);
+    // this.showSpinner(false);
   }
 }
