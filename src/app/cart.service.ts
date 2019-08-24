@@ -11,5 +11,9 @@ export class CartService {
 
   addToCart(product: IProduct): void {
     this.cart.push(product);
-  }  
+  }
+
+  getCartItems() {
+    return this.cart;
+  }
 }

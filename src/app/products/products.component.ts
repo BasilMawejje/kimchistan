@@ -14,7 +14,7 @@ import { CartService } from '../cart.service';
 export class ProductsComponent implements OnInit {
   products: IProduct[];
   loading = true;
- 
+
 
   constructor(private apiService: ApiService, private cartSVC: CartService) { }
 
@@ -31,7 +31,7 @@ export class ProductsComponent implements OnInit {
     this.apiService.getProducts()
     .subscribe(
       (products: IProduct[]) => {
-        this.products = products; 
+        this.products = products;
         this.showSpinner(false);
       },
       (err: ProductTrackerError) => console.log(err),
@@ -40,6 +40,6 @@ export class ProductsComponent implements OnInit {
 
   addToCart(product: IProduct): void {
     this.cartSVC.addToCart(product);
-    console.log(product);  
+    console.log(product);
   }
 }

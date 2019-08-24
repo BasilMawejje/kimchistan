@@ -33,7 +33,7 @@ export class ApiService {
   }
 
   private handleError(error: HttpErrorResponse): Observable<ProductTrackerError> {
-    let dataError = new ProductTrackerError();
+    const dataError = new ProductTrackerError();
     dataError.errorNumber = error.status;
     dataError.message = error.statusText;
     dataError.detailedMessage = `Resource not found: ${error.url}`;

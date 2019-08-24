@@ -3,9 +3,10 @@
   <app-spinner *ngIf="loading"></app-spinner>
   <div *ngIf="!loading" class="container">
     <div class="row">
-      <div class="card" class="col-md-3" *ngFor="let product of products"
-      routerLink="/products/{{product.id}}">
-          <img src="{{product.attributes.image}}" class="card-img-top" alt="{{product.attributes.name}}">
+      <div class="card" class="col-md-3" *ngFor="let product of products">
+          <img src="{{product.attributes.image}}" class="card-img-top" 
+              alt="{{product.attributes.name}}" 
+              routerLink="/products/{{product.id}}" />
           <div class="card-body">
             <p class="card-text">{{product.attributes.name}}</p>
             <h5 class="card-text">Price: {{product.attributes.price}}</h5>

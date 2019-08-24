@@ -1,0 +1,24 @@
+<div *ngIf="currentCart.length > 0 else noItems">
+    <div >
+       <table class="table">
+           <thead>
+               <tr>
+                   <th>
+                       Name
+                   </th>
+                   <th>Price</th>
+               </tr>
+            </thead>
+            <tbody *ngFor="let item of currentCart">
+                <tr >
+                    <td>{{item.attributes.name}}</td>
+                    <td>{{item.attributes.price}}</td>
+                </tr>
+            </tbody>
+       </table>
+    </div>
+</div>
+
+<ng-template #noItems>
+    <p>No items added to cart!!!</p>
+</ng-template>
