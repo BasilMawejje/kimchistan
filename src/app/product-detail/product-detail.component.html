@@ -1,16 +1,21 @@
 <app-spinner *ngIf="loading"></app-spinner>
-<div *ngIf="!loading" class="card mb-3" style="max-width: 540px;">
-<div class="row no-gutters">
-    <div class="col-md-4">
-        <img src="{{product?.attributes.image}}" class="card-detail-img" alt="{{product?.attributes.name}}">
+<div class="container" *ngIf="!loading">
+    <h1 class="my-4">
+      <small>{{product?.attributes.name}}</small>
+    </h1>
+    <div class="row">
+      <div class="col-md-8">
+        <img class="img-fluid" src="{{product?.attributes.image}}" alt="{{product?.attributes.name}}">
+      </div>
+      <div class="col-md-4">
+        <h3 class="my-3">Description</h3>
+        <p>{{product?.attributes.description}}</p>
+        <h3 class="my-3">Details</h3>
+        <ul>
+          <li>{{product?.attributes.name}}</li>
+          <li>{{product?.attributes.price | currency: 'SEK'}}</li>
+        </ul>
+        <button class="btn btn-primary btn-block" (click)="goBack()">Back to products</button>
+      </div>
     </div>
-        <div class="col-md-8">
-        <div class="card-body">
-            <h5 class="card-title">{{product?.attributes.name}}</h5>
-            <p class="card-text">{{product?.attributes.description}}</p>
-            <p class="card-text">Price: <small class="text-muted">{{product?.attributes.price | currency: 'SEK'}}</small></p>
-        </div>
-    </div>
-    <button class="btn btn-primary btn-block" (click)="goBack()">Back to products</button>
-</div>
-</div>
+  </div>
