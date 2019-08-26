@@ -9,7 +9,9 @@
                 <a class="nav-link" [routerLink]="['/products']">Products</a>
             </li>
             <li>
-                <a class="nav-link pull-right" [routerLink]="['/cart']">Cart</a>
+                <ng-container *ngIf="currentCart">
+                    <a class="nav-link" [routerLink]="['/cart']">Cart {{currentCart.length}}</a>
+                </ng-container>
             </li>
         </ul>
     </div>
