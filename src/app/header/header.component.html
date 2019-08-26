@@ -9,9 +9,16 @@
                 <a class="nav-link" [routerLink]="['/products']">Products</a>
             </li>
             <li>
-                <ng-container *ngIf="currentCart">
-                    <a class="nav-link" [routerLink]="['/cart']">Cart {{currentCart.length}}</a>
+                <ng-container *ngIf="currentCart.length > 0 else noItems">
+                    <a class="nav-link" [routerLink]="['/cart']">
+                        Cart <span class="badge badge-pill badge-success">{{currentCart.length}}</span>
+                    </a>
                 </ng-container>
+                <ng-template #noItems>
+                    <a class="nav-link">
+                        Cart <span class="badge badge-pill badge-danger">{{currentCart.length}}</span>
+                    </a>
+                </ng-template>
             </li>
         </ul>
     </div>
