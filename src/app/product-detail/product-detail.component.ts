@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-
 import { IProduct } from '../models/product';
 import { ApiService } from '../api.service';
 import { ProductTrackerError } from '../models/ProductTrackerError';
@@ -23,7 +22,6 @@ export class ProductDetailComponent implements OnInit {
 
   ngOnInit() {
     this.getProduct();
-    this.getRelatedProducts();
   }
 
   showSpinner(value: boolean) {
@@ -41,14 +39,6 @@ export class ProductDetailComponent implements OnInit {
         },
         (err: ProductTrackerError) => console.log(err.detailedMessage),
       );
-  }
-
-  getRelatedProducts() {
-    this.apiService.getProducts()
-    .subscribe(
-      (products: IProduct[]) => this.products = products,
-      (err: ProductTrackerError) => console.log(err),
-    );
   }
 
   goBack(): void {
