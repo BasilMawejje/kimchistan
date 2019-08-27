@@ -11,9 +11,18 @@ export class CartService {
 
   addToCart(product: IProduct): void {
     this.cart.push(product);
+    this.saveCart();
+  }
+
+  saveCart() {
+    localStorage.setItem('cart', JSON.stringify(this.cart));
   }
 
   getCartItems() {
+    this.cart = JSON.parse(localStorage.getItem('cart'));
+  }
+
+  showAll() {
     return this.cart;
   }
 }
