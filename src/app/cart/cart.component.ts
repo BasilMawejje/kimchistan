@@ -8,10 +8,12 @@ import { CartService } from '../cart.service';
 })
 export class CartComponent implements OnInit {
   currentCart: any = [];
+  initialCart = [];
 
   constructor(private cartSVC: CartService) { }
 
   ngOnInit() {
     this.currentCart = this.cartSVC.showAll();
+    this.currentCart === null ? this.currentCart = this.initialCart : this.currentCart;
   }
 }

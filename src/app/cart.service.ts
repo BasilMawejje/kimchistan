@@ -6,10 +6,12 @@ import { IProduct } from './models/product';
 })
 export class CartService {
   cart = [];
+  initialCart = [];
 
   constructor() { }
 
   addToCart(product: IProduct): void {
+    this.cart === null ? this.cart = this.initialCart : this.cart;
     this.cart.push(product);
     this.saveCart();
   }
@@ -23,6 +25,6 @@ export class CartService {
   }
 
   showAll() {
-    return this.cart;
+    return this.cart;  
   }
 }
