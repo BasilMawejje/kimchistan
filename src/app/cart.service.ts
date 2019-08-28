@@ -25,6 +25,12 @@ export class CartService {
   }
 
   showAll() {
-    return this.cart;  
+    return this.cart;
+  }
+
+  deleteFromCart(item): void {
+    this.cart.splice(item, 1);
+    this.saveCart();
+    console.log(this.cart);  
   }
 }

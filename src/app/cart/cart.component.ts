@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../cart.service';
+import { IProduct } from '../models/product';
 
 @Component({
   selector: 'app-cart',
@@ -14,6 +15,11 @@ export class CartComponent implements OnInit {
 
   ngOnInit() {
     this.currentCart = this.cartSVC.showAll();
-    this.currentCart === null ? this.currentCart = this.initialCart : this.currentCart;
+    this.currentCart === null ? this.currentCart = this.initialCart : this.currentCart;  
+  }
+
+  removeProduct(item) {
+    this.cartSVC.deleteFromCart(item);
+    console.log(this.currentCart);
   }
 }
