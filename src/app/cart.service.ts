@@ -29,8 +29,12 @@ export class CartService {
   }
 
   deleteFromCart(item): void {
-    this.cart.splice(item, 1);
-    this.saveCart();
-    console.log(this.cart);  
+    let index = this.cart.indexOf(item);
+    if(index > -1) {
+      this.cart.splice(index, 1);
+      this.saveCart();
+    }
+    console.log(this.cart);
+    
   }
 }
