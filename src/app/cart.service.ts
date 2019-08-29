@@ -35,6 +35,9 @@ export class CartService {
       this.saveCart();
     }
     console.log(this.cart);
-    
+  }
+
+  clearCart() {
+    localStorage.removeItem('cart');
   }
 }

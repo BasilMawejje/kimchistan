@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../cart.service';
-import { IProduct } from '../models/product';
 
 @Component({
   selector: 'app-cart',
@@ -21,5 +20,10 @@ export class CartComponent implements OnInit {
   removeProduct(item) {
     this.cartSVC.deleteFromCart(item);
     console.log(this.currentCart);
+  }
+
+  clearCart() {
+    this.cartSVC.clearCart();
+    window.location.reload();
   }
 }
