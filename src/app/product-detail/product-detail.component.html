@@ -1,0 +1,21 @@
+<app-spinner *ngIf="loading"></app-spinner>
+<div class="container" *ngIf="!loading">
+    <h1>
+      <small>{{product?.attributes.name}}</small>
+    </h1>
+    <div class="row">
+      <div class="col-md-8">
+        <img class="img-fluid" src="{{product?.attributes.image}}" alt="{{product?.attributes.name}}">
+      </div>
+      <div class="col-md-4">
+        <h3>Description</h3>
+        <p>{{product?.attributes.description}}</p>
+        <h3>Details</h3>
+        <ul>
+          <li><h5>{{product?.attributes.name}}</h5></li>
+          <li>{{product?.attributes.price | currency: 'SEK'}}</li>
+        </ul>
+        <button class="btn btn-primary btn-block" (click)="goBack()">Back to products</button>
+      </div>
+    </div>
+  </div>

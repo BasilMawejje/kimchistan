@@ -1,0 +1,17 @@
+<h2>Products</h2>
+<div>
+  <app-spinner *ngIf="loading"></app-spinner>
+  <div *ngIf="!loading" class="container">
+    <div class="row">
+      <div class="card" class="col-md-3" *ngFor="let product of products">
+          <img src="{{product.attributes.image}}" class="card-img-top" 
+              alt="{{product.attributes.name}}" 
+              routerLink="/products/{{product.id}}" />
+          <div class="card-body">
+            <p class="card-text">{{product.attributes.name}}</p>
+            <h5 class="card-text">Price: {{product.attributes.price}}</h5>
+            <button class="btn btn-info btn-sm" (click)="addToCart(product)">Add To Cart <i class="fas fa-shopping-cart"></i></button>
+          </div>
+        </div>
+    </div>
+  </div>
