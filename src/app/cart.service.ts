@@ -40,4 +40,8 @@ export class CartService {
   clearCart() {
     localStorage.removeItem('cart');
   }
+
+  orderSubTotal() {
+    return this.cart.map(item => item.attributes.price).reduce((a, b) => a + b, 0);
+  }
 }

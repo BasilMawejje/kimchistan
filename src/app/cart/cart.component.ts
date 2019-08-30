@@ -9,12 +9,16 @@ import { CartService } from '../cart.service';
 export class CartComponent implements OnInit {
   currentCart: any = [];
   initialCart = [];
+  total_price: number;
 
   constructor(private cartSVC: CartService) { }
 
   ngOnInit() {
     this.currentCart = this.cartSVC.showAll();
     this.currentCart === null ? this.currentCart = this.initialCart : this.currentCart;  
+    this.total_price = this.cartSVC.orderSubTotal();
+    console.log(this.cartSVC.orderSubTotal());
+    
   }
 
   removeProduct(item) {
