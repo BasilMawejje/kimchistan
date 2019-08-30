@@ -42,6 +42,7 @@ export class CartService {
   }
 
   orderSubTotal() {
+    this.cart === null ? this.cart = this.initialCart : this.cart;
     return this.cart.map(item => item.attributes.price).reduce((a, b) => a + b, 0);
   }
 }
