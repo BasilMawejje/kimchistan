@@ -5,8 +5,8 @@ import { IProduct } from './models/product';
   providedIn: 'root'
 })
 export class CartService {
-  cart = [];
-  initialCart = [];
+  cart: any = [];
+  initialCart = localStorage.setItem('cart', JSON.stringify([]));
 
   constructor() { }
 
@@ -38,7 +38,8 @@ export class CartService {
   }
 
   clearCart() {
-    localStorage.removeItem('cart');
+    this.cart = [];
+    this.saveCart();
   }
 
   orderSubTotal() {
