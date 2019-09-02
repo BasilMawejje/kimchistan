@@ -40,7 +40,7 @@ export class ProductsComponent implements OnInit {
 
   addToCart(product: IProduct): void {
     this.cartSVC.addToCart(product);
-    window.location.reload();
+    this.cartSVC.showAll();
     console.log(product);
   }
 }
