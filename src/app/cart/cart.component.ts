@@ -23,7 +23,7 @@ export class CartComponent implements OnInit {
 
   removeProduct(item) {
     this.cartSVC.deleteFromCart(item);
-    window.location.reload();
+    this.cartSVC.showAll();
     console.log(this.currentCart);
   }
 
