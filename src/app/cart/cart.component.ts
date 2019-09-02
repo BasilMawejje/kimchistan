@@ -15,10 +15,8 @@ export class CartComponent implements OnInit {
 
   ngOnInit() {
     this.currentCart = this.cartSVC.showAll();
-    this.currentCart === null ? this.currentCart = this.initialCart : this.currentCart;  
+    this.currentCart === null ? this.currentCart = this.initialCart : this.currentCart;
     this.getTotalPrice();
-    console.log(this.cartSVC.orderSubTotal());
-    
   }
 
   removeProduct(item) {
@@ -31,7 +29,6 @@ export class CartComponent implements OnInit {
   clearCart() {
     this.cartSVC.clearCart();
     this.getTotalPrice();
-    window.location.reload();
   }
 
   getTotalPrice() {
