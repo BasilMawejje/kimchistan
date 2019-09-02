@@ -16,7 +16,7 @@ export class CartComponent implements OnInit {
   ngOnInit() {
     this.currentCart = this.cartSVC.showAll();
     this.currentCart === null ? this.currentCart = this.initialCart : this.currentCart;  
-    this.total_price = this.cartSVC.orderSubTotal();
+    this.getTotalPrice();
     console.log(this.cartSVC.orderSubTotal());
     
   }
@@ -24,11 +24,17 @@ export class CartComponent implements OnInit {
   removeProduct(item) {
     this.cartSVC.deleteFromCart(item);
     this.cartSVC.showAll();
-    console.log(this.currentCart);
+    this.getTotalPrice();
+    console.log(this.cartSVC.orderSubTotal());
   }
 
   clearCart() {
     this.cartSVC.clearCart();
+    this.getTotalPrice();
     window.location.reload();
+  }
+
+  getTotalPrice() {
+    this.total_price = this.cartSVC.orderSubTotal();
   }
 }
