@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CartService } from '../cart.service';
 import { PaymentService } from '../payment.service';
 import { ProductTrackerError } from '../models/ProductTrackerError';
+import { OrderService } from '../order.service';
 
 @Component({
   selector: 'app-cart',
@@ -14,7 +15,8 @@ export class CartComponent implements OnInit {
   total_price: number;
 
   constructor(private cartSVC: CartService, 
-              private paymentService: PaymentService) { }
+              private paymentService: PaymentService,
+              private orderService: OrderService) { }
 
   ngOnInit() {
     this.currentCart = this.cartSVC.showAll();
@@ -40,19 +42,21 @@ export class CartComponent implements OnInit {
 
   openCheckout() {
     const amount = this.total_price * 100
-    var handler = (<any>window).StripeCheckout.configure({
-      key: '',
+
+    const handler = (<any>window).StripeCheckout.configure({
+      key: 'pk_test_Okp6mq2W0Ttopccq3HFOy5zC',
       locale: 'auto',
       name: 'Kimchistan',
       currency: 'sek',
       amount: amount,
       token: (token: any) => {
-        this.paymentService.
-          createPayment(token, amount)
+        this.paymentService
+          .createPayment(token, amount)
             .subscribe(
               (res) => {
-                this.paymentService.createOrder(this.currentCart, res.charge.receipt_email);
-                console.log("Success!!! Payment made");
+                this.orderService.create(this.currentCart, res.email);
+                console.log(res);
+                
               },
               (err: ProductTrackerError) => console.log(err),
             );

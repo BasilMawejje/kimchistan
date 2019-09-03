@@ -1,27 +1,26 @@
 import { Injectable } from '@angular/core';
+import { IOrder } from './models/order';
 import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
-import { IPayment } from "./models/payment";
 
 @Injectable({
   providedIn: 'root'
 })
-export class PaymentService {
+export class OrderService {
   apiUrl = 'http://localhost:3000/api/v1';
 
   constructor(private http: HttpClient) { }
 
-  createPayment(token: any, amount: number) {
+  create(cart: any, email: string) {
     const payload = {
       data: {
         attributes: {
-          email: token.email,
-          token: token.id,
-          amount: amount
+          cart: cart,
+          email: email
         }
       }
     };
 
-    return this.http.post<IPayment>(`${this.apiUrl}/payments`, payload);
+    return this.http.post<IOrder>(`${this.apiUrl}/orders`, payload);
   }
 }
