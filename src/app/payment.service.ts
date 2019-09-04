@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { IPayment } from "./models/payment";
 
@@ -22,6 +21,6 @@ export class PaymentService {
       }
     };
 
-    return this.http.post<IPayment>(`${this.apiUrl}/payments`, payload);
+    return this.http.post<IPayment>(`${this.apiUrl}/payments`, payload)
   }
 }

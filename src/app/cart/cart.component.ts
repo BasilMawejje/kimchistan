@@ -3,6 +3,7 @@ import { CartService } from '../cart.service';
 import { PaymentService } from '../payment.service';
 import { ProductTrackerError } from '../models/ProductTrackerError';
 import { OrderService } from '../order.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -16,7 +17,8 @@ export class CartComponent implements OnInit {
 
   constructor(private cartSVC: CartService, 
               private paymentService: PaymentService,
-              private orderService: OrderService) { }
+              private orderService: OrderService,
+              private router: Router) { }
 
   ngOnInit() {
     this.currentCart = this.cartSVC.showAll();
@@ -53,10 +55,12 @@ export class CartComponent implements OnInit {
         this.paymentService
           .createPayment(token, amount)
             .subscribe(
-              (res) => {
-                this.orderService.create(this.currentCart, res.email);
-                console.log(res);
-                
+              data => {
+                this.orderService.create(this.currentCart, token.email)
+                  .subscribe((payload) => payload)
+                  console.log(data);
+                // this.cartSVC.clearCart();
+                // this.router.navigate(['products']);
               },
               (err: ProductTrackerError) => console.log(err),
             );
