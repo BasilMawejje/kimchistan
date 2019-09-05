@@ -55,12 +55,11 @@ export class CartComponent implements OnInit {
         this.paymentService
           .createPayment(token, amount)
             .subscribe(
-              data => {
+              (res) => {
                 this.orderService.create(this.currentCart, token.email)
-                  .subscribe((payload) => payload)
-                  console.log(data);
-                // this.cartSVC.clearCart();
-                // this.router.navigate(['products']);
+                  .subscribe((res) => res)
+                  this.cartSVC.clearCart();
+                  this.router.navigate(['products']);
               },
               (err: ProductTrackerError) => console.log(err),
             );
