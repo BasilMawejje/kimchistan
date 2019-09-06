@@ -55,7 +55,7 @@ export class CartComponent implements OnInit {
         this.paymentService
           .createPayment(token, amount)
             .subscribe(
-              (res) => {
+              () => {
                 this.orderService.create(this.currentCart, token.email)
                   .subscribe((res) => res)
                   this.cartSVC.clearCart();
