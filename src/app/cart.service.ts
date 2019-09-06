@@ -5,13 +5,12 @@ import { IProduct } from './models/product';
   providedIn: 'root'
 })
 export class CartService {
-  cart = [];
-  initialCart = [];
+  cart: any = [];
 
   constructor() { }
 
   addToCart(product: IProduct): void {
-    this.cart === null ? this.cart = this.initialCart : this.cart;
+    this.cart === null ? this.cart = localStorage.setItem('cart', JSON.stringify([])) : this.cart;
     this.cart.push(product);
     this.saveCart();
   }
@@ -38,6 +37,12 @@ export class CartService {
   }
 
   clearCart() {
-    localStorage.removeItem('cart');
+    this.cart.length = 0;
+    this.saveCart();
+  }
+
+  orderSubTotal() {
+    this.cart === null ? this.cart = localStorage.setItem('cart', JSON.stringify([])) : this.cart;
+    return this.cart.map(item => item.attributes.price).reduce((a, b) => a + b, 0);
   }
 }

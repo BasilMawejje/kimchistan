@@ -8,7 +8,6 @@ import { CartService } from '../cart.service';
 })
 export class HeaderComponent implements OnInit {
   currentCart: any;
-  cartCount: number;
   initialCart = [];
 
   constructor(private cartSVC: CartService) { }
