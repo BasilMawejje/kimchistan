@@ -1,21 +1,20 @@
 import { TestBed } from '@angular/core/testing';
 import { CartService } from './cart.service';
-import { HttpClient } from 'selenium-webdriver/http';
-import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
-import { ApiService } from './api.service';
-
-interface Product {
-  id: number;
-  name: string;
-  image: string;
-  price: number;
-  description: string;
-  type: string;
-  available: boolean;
-}
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { IProduct } from './models/product';
 
 describe('CartService', () => {
-  const testProduct: Product = {id: 1, name: 'Bibimbap', price: 49, description: 'The best we offer.', image: 'http://placehold.it/100x100', type: 'dish', available: true};
+  const testProduct: IProduct = {attributes: 
+    {
+      id: 1, 
+      name: 'Bibimbap', 
+      price: 49, 
+      description: 'The best we offer.', 
+      image: 'http://placehold.it/100x100', 
+      type: 'dish', 
+      available: true
+    }
+  };
 
   beforeEach(() => TestBed.configureTestingModule({
     imports: [ HttpClientTestingModule ],
@@ -32,15 +31,14 @@ describe('CartService', () => {
     expect(service.cart.length).toEqual(0);
     service.addToCart(testProduct);
     expect(service.cart.length).toEqual(1);
-    expect(service.cart[0]).toEqual({
-      id: 1,
-      name: 'Bibimbap',
-      price: 49,
-      description: 'The best we offer.',
-      image: 'http://placehold.it/100x100',
-      type: 'dish',
-      available: true
-    });
+    expect(service.cart[0]).toEqual({attributes: 
+      {
+        id: 1, name: 'Bibimbap', 
+        price: 49, description: 'The best we offer.', 
+        image: 'http://placehold.it/100x100', 
+        type: 'dish', available: true
+    }
+  });
     service.addToCart(testProduct);
     expect(service.cart.length).toEqual(2);
   });

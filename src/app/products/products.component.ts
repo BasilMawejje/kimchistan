@@ -43,6 +43,6 @@ export class ProductsComponent implements OnInit {
     this.cartSVC.addToCart(product);
     this.cartSVC.showAll();
     console.log(product);
-    this.toastr.success(`Successfully added to cart`);
+    this.toastr.success(`Added ${product.attributes.name} to cart`);
   }
 }
