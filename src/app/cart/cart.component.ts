@@ -15,6 +15,7 @@ export class CartComponent implements OnInit {
   currentCart: any = [];
   initialCart = [];
   total_price: number;
+  loading = true;
 
   constructor(private cartSVC: CartService, 
               private paymentService: PaymentService,
@@ -33,7 +34,7 @@ export class CartComponent implements OnInit {
     this.cartSVC.showAll();
     this.getTotalPrice();
     console.log(this.cartSVC.orderSubTotal());
-    this.toastr.success(`Successfully removed product from cart`);
+    this.toastr.success(`Successfully removed ${item.attributes.name} from cart`);
   }
 
   clearCart() {
@@ -47,7 +48,7 @@ export class CartComponent implements OnInit {
   }
 
   openCheckout() {
-    const amount = this.total_price * 100
+    const amount = this.total_price * 100;
 
     const handler = (<any>window).StripeCheckout.configure({
       key: 'pk_test_Okp6mq2W0Ttopccq3HFOy5zC',
@@ -61,10 +62,16 @@ export class CartComponent implements OnInit {
             .subscribe(
               () => {
                 this.orderService.create(this.currentCart, token.email)
-                  .subscribe((res) => res)
-                  this.cartSVC.clearCart();
-                  this.router.navigate(['products']);
-                  this.toastr.success(`Successfully made your order. Your food is ready in 30 minutes.`);
+                  .subscribe((res) => res);
+                    this.cartSVC.clearCart();
+                    this.router.navigate(['products']);
+                    this.toastr.success(
+                      `Thanks ${token.email}. Successfully made your order. Your food is ready in 30 minutes.`, 
+                      'Successfully placed your order',
+                      {
+                        positionClass :  'toast-top-full-width', 
+                        timeOut: 20000
+                      });
               },
               (err: ProductTrackerError) => console.log(err),
             );
