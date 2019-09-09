@@ -4,6 +4,7 @@ import { PaymentService } from '../payment.service';
 import { ProductTrackerError } from '../models/ProductTrackerError';
 import { OrderService } from '../order.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-cart',
@@ -14,11 +15,13 @@ export class CartComponent implements OnInit {
   currentCart: any = [];
   initialCart = [];
   total_price: number;
+  loading = true;
 
   constructor(private cartSVC: CartService, 
               private paymentService: PaymentService,
               private orderService: OrderService,
-              private router: Router) { }
+              private router: Router,
+              private toastr: ToastrService) { }
 
   ngOnInit() {
     this.currentCart = this.cartSVC.showAll();
@@ -31,11 +34,13 @@ export class CartComponent implements OnInit {
     this.cartSVC.showAll();
     this.getTotalPrice();
     console.log(this.cartSVC.orderSubTotal());
+    this.toastr.success(`Successfully removed ${item.attributes.name} from cart`);
   }
 
   clearCart() {
     this.cartSVC.clearCart();
     this.getTotalPrice();
+    this.toastr.success(`Successfully cleared cart`);
   }
 
   getTotalPrice() {
@@ -43,7 +48,7 @@ export class CartComponent implements OnInit {
   }
 
   openCheckout() {
-    const amount = this.total_price * 100
+    const amount = this.total_price * 100;
 
     const handler = (<any>window).StripeCheckout.configure({
       key: 'pk_test_Okp6mq2W0Ttopccq3HFOy5zC',
@@ -57,9 +62,16 @@ export class CartComponent implements OnInit {
             .subscribe(
               () => {
                 this.orderService.create(this.currentCart, token.email)
-                  .subscribe((res) => res)
-                  this.cartSVC.clearCart();
-                  this.router.navigate(['products']);
+                  .subscribe((res) => res);
+                    this.cartSVC.clearCart();
+                    this.router.navigate(['products']);
+                    this.toastr.success(
+                      `Thanks ${token.email}. Successfully made your order. Your food is ready in 30 minutes.`, 
+                      'Successfully placed your order',
+                      {
+                        positionClass :  'toast-top-full-width', 
+                        timeOut: 20000
+                      });
               },
               (err: ProductTrackerError) => console.log(err),
             );

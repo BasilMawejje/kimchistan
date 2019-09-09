@@ -3,6 +3,7 @@ import { IProduct } from '../models/product';
 import { ApiService } from '../api.service';
 import { ProductTrackerError } from '../models/ProductTrackerError';
 import { CartService } from '../cart.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   // selector only needed if it will be used as a nested component. We are using routing for this now.
@@ -16,7 +17,7 @@ export class ProductsComponent implements OnInit {
   loading = true;
 
 
-  constructor(private apiService: ApiService, private cartSVC: CartService) { }
+  constructor(private apiService: ApiService, private cartSVC: CartService, private toastr: ToastrService) { }
 
   ngOnInit() {
     this.getProducts();
@@ -42,5 +43,6 @@ export class ProductsComponent implements OnInit {
     this.cartSVC.addToCart(product);
     this.cartSVC.showAll();
     console.log(product);
+    this.toastr.success(`Added ${product.attributes.name} to cart`);
   }
 }

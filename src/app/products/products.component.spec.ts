@@ -4,6 +4,7 @@ import { ProductsComponent } from './products.component';
 import { RouterModule } from '@angular/router';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { SpinnerComponent } from '../core/spinner/spinner.component';
+import { ToastrModule } from 'ngx-toastr';
 
 describe('ProductsComponent', () => {
   let component: ProductsComponent;
@@ -12,7 +13,7 @@ describe('ProductsComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ProductsComponent, SpinnerComponent ],
-      imports: [ RouterModule, HttpClientTestingModule ]
+      imports: [ RouterModule, HttpClientTestingModule, ToastrModule.forRoot() ]
     })
     .compileComponents();
   }));
