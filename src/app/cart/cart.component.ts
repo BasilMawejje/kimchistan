@@ -4,6 +4,7 @@ import { PaymentService } from '../payment.service';
 import { ProductTrackerError } from '../models/ProductTrackerError';
 import { OrderService } from '../order.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-cart',
@@ -18,7 +19,8 @@ export class CartComponent implements OnInit {
   constructor(private cartSVC: CartService, 
               private paymentService: PaymentService,
               private orderService: OrderService,
-              private router: Router) { }
+              private router: Router,
+              private toastr: ToastrService) { }
 
   ngOnInit() {
     this.currentCart = this.cartSVC.showAll();
@@ -31,11 +33,13 @@ export class CartComponent implements OnInit {
     this.cartSVC.showAll();
     this.getTotalPrice();
     console.log(this.cartSVC.orderSubTotal());
+    this.toastr.success(`Successfully removed product from cart`);
   }
 
   clearCart() {
     this.cartSVC.clearCart();
     this.getTotalPrice();
+    this.toastr.success(`Successfully cleared cart`);
   }
 
   getTotalPrice() {
@@ -60,6 +64,7 @@ export class CartComponent implements OnInit {
                   .subscribe((res) => res)
                   this.cartSVC.clearCart();
                   this.router.navigate(['products']);
+                  this.toastr.success(`Successfully made your order. Your food is ready in 30 minutes.`);
               },
               (err: ProductTrackerError) => console.log(err),
             );
